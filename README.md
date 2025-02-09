@@ -14,7 +14,7 @@ It's running a webserver (lighthttpd) with some .php files. It uses a web API, s
 
 It sends and receives RS232 commands.
 
-# Connect a console to the Wifi Module (via serial)
+## Connect a console to the Wifi Module (via serial)
 Solder a RX (pin 43), TX (pin 44) and GND (pin 47) wire to the Carambola 2 module, this is quite simple because the solder points are quite big.
 ![image](https://github.com/user-attachments/assets/b6444457-95e1-4051-a275-cfd323a621c6)
 Keep it connected to the Viega Multiplex Trio E unit because of the poswer supply. You need an MAX3232 chip to convert the signals of the Carambola 2 to RS232 (to your laptop).
@@ -62,7 +62,6 @@ lighttpd -f /tmp/lighttpd.conf
 
 
 
-
-# Building your own Wifi module
+## Building your own Wifi module
 If you want to clone this or build your own module (Raspberry Pi 2 Zero W) which sends the serial signals, please remember that you need an converter chip like the MAX3232 to convert the 3.3v UART of the PI or an ESP to the RS232 signal (which can be 12V).
 All needed files (mainly the /www/ ) are in this repository.
