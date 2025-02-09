@@ -17,10 +17,13 @@ It sends and receives RS232 commands.
 ## Connect a console to the Wifi Module (via serial)
 Solder a RX (pin 43), TX (pin 44) and GND (pin 47) wire to the Carambola 2 module, this is quite simple because the solder points are quite big.
 ![image](https://github.com/user-attachments/assets/b6444457-95e1-4051-a275-cfd323a621c6)
-Keep it connected to the Viega Multiplex Trio E unit because of the poswer supply. You need an MAX3232 chip to convert the signals of the Carambola 2 to RS232 (to your laptop).
+Keep it connected to the Viega Multiplex Trio E unit because of the poswer supply.
+You need an MAX3232 chip to convert the TTL signals of the Carambola 2 to RS232 (to your laptop).
 ```CARAMBOLA2 <-----> MAX3232 CHIP <------>  SERIAL-TO-USB CABLE in LAPTOP```
-For the Serial to USB cable, I used an Startech ICUSB2321F because it has FTDI FT232RL Chipset which always works and doens't need any drivers for windows.
-Settings are: 115200, 8, N, 1.
+There are also all-in-one RS232-TTL converters (even with USB) for just a few euro.
+I did it with a Startech ICUSB2321F Serial to USB cable because it has an FTDI FT232RL Chipset which always works and doens't need any drivers for windows. I used a Breadboard, a MAX3232 chip and some Dupont wires. If you use al all-in-one RS232-TTL-USB cable, you don't need this.
+Use your favorite console tool (TerraTerm, SecureCRT or Putty) and connect to the COM port. Console settings are: 115200, 8, N, 1.
+
 When booting you see the serial data on your console. During boot (after about 7 seconds), press **f** (followed by **ENTER**) to abort the boot process and enter failsafe mode. I you don't do this, you will lose console because the software will switch the UART to 9600 8, N, 1 because of writing commands to the Viega Multiplex Trio E. So you need to abort the boot process.
 If you abort the boot process, you don't have Wifi (and although the Carambola 2 has a Wifi controller, there is no RJ45 port on the Wifi module).
 To enable WIFI, scan for SSID's, paste the following to the console:
