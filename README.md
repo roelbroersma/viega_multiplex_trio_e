@@ -7,6 +7,7 @@ Viega officially said they are not building new modules and are selling their st
 The Wifi module is a Carambola 2 (by 8devices: https://8devices.com), on a small PCB with an RS232 chip and some stepdowns for the power supply of the Carambola 2.
 Connected by a 4 wire cable (on a 6pin JST-XH connector): GND (white), RX (green), TX (yellow), VCC (brown).
 The RX/TX/GND is a RS232 signal using 9600 8N1.
+
 ![image](https://github.com/user-attachments/assets/05680862-cc1d-48a4-8b3e-6fdac5fcb3ce)
 
 
