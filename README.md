@@ -1,5 +1,5 @@
 # Viega Multiplex Trio E
-The official software running on the Wifi module for the Viega Multiplex Trio E.
+The official software developped by Oblamatik AG (now acquired by Viega) running on the Wifi module for the Viega Multiplex Trio E.
 Viega officially said they are not building new modules and are selling their stock. That's the reason this Github REPO exists, so you build your own module!
 
 
