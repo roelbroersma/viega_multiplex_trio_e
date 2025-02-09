@@ -1,0 +1,109 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'HYGIENE' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'HYGIENE' | translate }}</div>
+            <div class="tile" style="padding-top: 30px;">
+                <div class="settings-row">
+                    <label>{{ 'HYGIENE_FLUSH_ACTIVE' | translate }}</label>
+                    <div class="flush-switch" ng-class="{'inactive':flushActive == false}">
+                        <input
+                                bs-switch
+                                ng-model="hygieneFlushActive"
+                                type="checkbox"
+                                class="my-slider"
+                                switch-active="{{ isActive }}"
+                                switch-on-color="{{ onColor }}"
+                                switch-off-color="{{ offColor }}"
+                                switch-on-text=" "
+                                switch-off-text=" "
+                                switch-animate="{{ animate }}"
+                                switch-size="{{ size }}"
+                                switch-label="{{ label }}"
+                                switch-icon="vertical-bar">
+                    </div>
+                </div>
+
+                <div class="timeframeController" ng-show="flushActive == true">
+                    <div class="settings-title">{{ 'TIME_FRAME' | translate }}</div>
+                    <div class="settings-row">
+                        <label>{{ 'REPETITION_PERIOD' | translate }}</label>
+                        <div class="btn-group" dropdown>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                {{repetitionperiodLabel}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="" data-ng-click="setRepetitionPeriod(1)">1 {{ 'DAY' | translate }}</a></li>
+                                <li><a href="" data-ng-click="setRepetitionPeriod(2)">2 {{ 'DAYS' | translate }}</a></li>
+                                <li><a href="" data-ng-click="setRepetitionPeriod(3)">3 {{ 'DAYS' | translate }}</a></li>
+                                <li><a href="" data-ng-click="setRepetitionPeriod(7)">7 {{ 'DAYS' | translate }}</a></li>
+                                <li><a href="" data-ng-click="setRepetitionPeriod(14)">14 {{ 'DAYS' | translate }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <label>{{ 'FLUSH_DURATION' | translate }}</label>
+                        <div class="btn-group" dropdown>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                {{durationLabel}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="" data-ng-click="setFlushDuration(10)">10 s</a></li>
+                                <li><a href="" data-ng-click="setFlushDuration(20)">20 s</a></li>
+                                <li><a href="" data-ng-click="setFlushDuration(30)">30 s</a></li>
+                                <li><a href="" data-ng-click="setFlushDuration(60)">1 min</a></li>
+                                <li><a href="" data-ng-click="setFlushDuration(300)">5 min</a></li>
+                                <li><a href="" data-ng-click="setFlushDuration(600)">10 min</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-title">{{ 'THERMAL_DESINFECTION' | translate }}</div>
+                <div class="thermal-desinfection" style="margin-bottom: 75px;">
+                    <div class="disinfection-container">
+                        <div class="disinfection-status">
+                            <div class="disinfection-content">
+                                <div class="disinfection-message">
+                                    <span ng-show="disinfectionRunning == true || finish_failed == true">{{countDownTime}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix disinfeciton-info row">
+                        <div class="col-xs-12 col-sm-7">
+                            <div class="col-xs-3">
+                                <img ng-src="{{routePrefix}}/static/img/caution_sign.png" height="40"/>
+                            </div>
+                            <div class="col-xs-9" translate="{{ 'THERMAL_INFO_TEXT' | translate }}">
+
+                            </div>
+                        </div>
+                        <div class="disinfection-start col-xs-12 col-sm-5"
+                             ng-show="disinfectionRunning == false && finish_failed == false">
+                            <div class="disinfection-button" data-ng-click="startDisinfection()">{{ 'START_DISINFECTION'
+                                | translate }}
+                            </div>
+                        </div>
+                        <div class="disinfection-start col-xs-12 col-sm-5"
+                             ng-show="disinfectionRunning == true && finish_failed == false">
+                            <div class="disinfection-button" data-ng-click="cancelDisinfection()">{{
+                                'CANCEL_DISINFECTION' | translate }}
+                            </div>
+                        </div>
+                        <div class="disinfection-start col-xs-12 col-sm-5" ng-show="finish_failed == true">
+                            <div class="disinfection-button" data-ng-click="okPressed()">{{
+                                'OK' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

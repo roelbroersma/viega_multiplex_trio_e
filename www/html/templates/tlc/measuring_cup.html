@@ -1,0 +1,36 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'MEASURING_CUP' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+
+
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'MEASURING_CUP' | translate }}</div>
+            <div class="tile" id="temp-tile">
+
+                <div class="value-display current-temp warm-up" ng-class="landscape ? 'landscape' : 'portrait'">
+                    <div class="centered">
+                        <span ng-show="warmUpRunning == true"></span>
+                        <span ng-show="waterRunning && landscape == false">{{ 'FILL_TO' | translate }} </span>
+                        <span ng-show="waterRunning && landscape == true">{{ 'FILL_TO' | translate }}<br/></span>
+                        <span>{{tempDisplay | number : 1}} {{amountLabel}}</span>
+                    </div>
+                </div>
+                <div class="wheel-button temp" id="temp">
+                    <img class="wheel-interface"
+                         ng-src="{{routePrefix}}/static/img/tlc_temp_interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="waterRunning"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="waterRunning"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</div>

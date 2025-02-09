@@ -1,0 +1,126 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'SETTINGS' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'SETTINGS' | translate }}</div>
+            <div class="tile" style="padding-bottom: 100px;">
+
+                <div class="settings-title" ng-show="languages.length > 0">{{ 'LANGUAGE' | translate }}</div>
+                <div class="settings-row" ng-show="languages.length > 0">
+                    <label>&nbsp;</label>
+                    <div class="btn-group" dropdown>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                            {{ user_language | translate }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat="language in languages"><a href="" data-ng-click="setLanguage(language.key)">
+                                {{ language.name | translate }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="settings-title">{{ 'TEMPERATURE' | translate }}</div>
+                <div class="settings-row">
+                    <label>{{ 'TEMPERATURE_WITH' | translate }}</label>
+                    <div class="btn-group" dropdown is-open="status.isopen">
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                            {{tempCurrency}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="" data-ng-click="setTempUnit(0)">°C</a></li>
+                            <li><a href="" data-ng-click="setTempUnit(1)">°F</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="settings-row" ng-show="TLC.is_tlc_temperature">
+                    <label for="maxTemp">{{ 'MAX_TEMPERATURE' | translate }}</label>
+                    <span class="number-input">
+                        <input type="text" id="maxTemp" class="form-control" pattern="\d*" min="{{minimalTemp}}"
+                               max="{{maximalTemp}}"
+                               value="{{maxTemp}}">
+                        <span>{{tempCurrency}}</span>
+                    </span>
+                </div>
+
+                <div class="settings-title" ng-show="TLC.max_amount && TLC.type == 4">{{ 'AMOUNT' | translate }}</div>
+                <div class="settings-row" ng-show="TLC.max_amount && TLC.type == 4">
+                    <label for="maxAmount">{{ 'MAX_AMOUNT' | translate }}</label>
+                    <span class="number-input">
+                        <input type="text" id="maxAmount" class="form-control" pattern="\d*" min="{{minimalAmount}}"
+                               max="{{maximalAmount}}"
+                               ng-class="{invalid: !currentMaxFillAmountValid}"
+                               ng-model="currentMaxFillAmount">
+                        <span>{{ 'LITER' | translate }}</span>
+                    </span>
+                </div>
+
+                <div class="settings-title" ng-show="TLC.is_tlc_temperature">{{ 'SECURITY_STOP' | translate }}</div>
+                <div class="settings-row" ng-show="TLC.is_tlc_temperature">
+                    <label for="maxRuntime">{{ 'MAX_FLOW_TIME' | translate }}</label>
+                    <span class="number-input">
+                        <input type="text" id="maxRuntime" class="form-control" pattern="\d*" min="1" max="50"
+                               value="{{maxRuntime}}">
+                        <span>{{ 'MIN' | translate }}</span>
+                    </span>
+                </div>
+
+                <div class="settings-title" ng-show="TLC.is_tlc_temperature">{{ 'AMBIENT_LIGHT' | translate }}</div>
+                <div class="tile-content-white settings-white-tile ambient-light-tile" ng-show="TLC.is_tlc_temperature">
+                    <div class="btn-group" dropdown>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                            {{ambientName | translate}}
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(0), 'color':'white'}"
+                                   data-ng-click="setAmbientColor(0)">{{'BLACK' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(1)}"
+                                   data-ng-click="setAmbientColor(1)">{{'LIGHT_BLUE' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(2), 'color':'white'}"
+                                   data-ng-click="setAmbientColor(2)">{{'BLUE' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(3), 'color':'white'}"
+                                   data-ng-click="setAmbientColor(3)">{{'PINK' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(4), 'color':'white'}"
+                                   data-ng-click="setAmbientColor(4)">{{'RED' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(5)}"
+                                   data-ng-click="setAmbientColor(5)">{{'ORANGE' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(6)}"
+                                   data-ng-click="setAmbientColor(6)">{{'YELLOW' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(7)}"
+                                   data-ng-click="setAmbientColor(7)">{{'GREEN' | translate }}</a></li>
+                            <li><a href="" ng-style="{'background-color':getAmbientColor(8)}"
+                                   data-ng-click="setAmbientColor(8)">{{'WHITE' | translate }}</a></li>
+                            <li><a href="" style="color:white;background: #7c4a7c; /* Old browsers */
+background: -moz-linear-gradient(left,  #7c4a7c 0%, #2f79f9 23%, #1e961c 41%, #fcfc2f 61%, #ffa528 79%, #ff0000 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#7c4a7c), color-stop(23%,#2f79f9), color-stop(41%,#1e961c), color-stop(61%,#fcfc2f), color-stop(79%,#ffa528), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  #7c4a7c 0%,#2f79f9 23%,#1e961c 41%,#fcfc2f 61%,#ffa528 79%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  #7c4a7c 0%,#2f79f9 23%,#1e961c 41%,#fcfc2f 61%,#ffa528 79%,#ff0000 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  #7c4a7c 0%,#2f79f9 23%,#1e961c 41%,#fcfc2f 61%,#ffa528 79%,#ff0000 100%); /* IE10+ */
+background: linear-gradient(to right,  #7c4a7c 0%,#2f79f9 23%,#1e961c 41%,#fcfc2f 61%,#ffa528 79%,#ff0000 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c4a7c', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
+"
+                                   data-ng-click="setAmbientColor(9)" id="ambient_light">{{'AMBIENT_LIGHT' | translate
+                                }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="settings-title">{{ 'DEVICE_NAME' | translate }}</div>
+                <div class="tile-content-white settings-white-tile" style="padding: 13px 0;">
+                    <input class="device-name form-control" type="text" ng-model="TLC.name" maxlength="32"/>
+                </div>
+
+                <div class="settings-title" ng-hide="TLC.is_tlc_temperature">{{ 'REBOOT_DEVICE' | translate }}
+                </div>
+                <a style="margin-bottom: 80px;" class="reboot" href="" data-ng-click="restartDevice()"
+                   ng-show="TLC.is_tlc_temperature==false">{{ 'REBOOT' | translate }}</a>
+
+            </div>
+        </div>
+    </div>
+</div>

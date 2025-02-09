@@ -1,0 +1,111 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title" ng-class="{ 'with-popup': TLC.popup }">{{ 'HOME'|translate }}</div>
+    <div class="popup-open" ng-click="togglePopup()" ng-show="TLC.popup">
+        <img ng-show="popupOpen" ng-src="{{routePrefix}}/static/img/popup_mini_open.svg" alt=""/>
+        <img ng-hide="popupOpen" ng-src="{{routePrefix}}/static/img/popup_mini_closed.svg" alt=""/>
+    </div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+
+        <div class="mode-selection" ng-show="is_tlc_temperature == false">
+            <span class="icon-thermostat visible-xs left"></span>
+
+            <div class="temp-slider visible-xs left">
+
+
+                <input
+                        bs-switch
+                        ng-model="regulatorModeSelect"
+                        type="checkbox"
+                        class="my-slider"
+                        switch-active="{{ isActive }}"
+                        switch-on-color="{{ onColor }}"
+                        switch-off-color="{{ offColor }}"
+                        switch-on-text=" "
+                        switch-off-text=" "
+                        switch-animate="{{ animate }}"
+                        switch-size="{{ size }}"
+                        switch-label="{{ label }}"
+                        switch-icon="vertical-bar">
+
+            </div>
+            <span class="icon-waterflow visible-xs left"></span>
+
+        </div>
+
+
+        <div ng-class="{'in-front': flowActive == false, 'col-md-6': is_tlc_temperature == false}"
+             class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'TEMP' | translate }}</div>
+            <div class="tile" id="temp-tile">
+                <div class="value-display current-temp" ng-class="landscape ? 'landscape' : 'portrait'" ng-show="selectionActive && temp_sensor">
+                    <div class="centered">
+                        <span>{{tempDisplay | number : 1}}{{tempUnit}}</span>
+                    </div>
+                </div>
+                <div class="wheel-button temp" id="temp">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc_temp_interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="selectionActive"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="selectionActive"/>
+                </svg>
+
+
+            </div>
+        </div>
+        <div ng-class="{'in-front': flowActive == true}" ng-show="is_tlc_temperature == false"
+             class="col-xs-12 col-md-6 tile-col hidden-xs">
+            <div class="tile-title hidden-xs">{{ 'FLOW' | translate }}</div>
+            <div class="tile" id="flow-tile">
+                <div ng-show="TLC.popup">
+                    <div id="popup" ng-click="togglePopup()">
+                        <img ng-show="popupOpen" ng-src="{{routePrefix}}/static/img/popup_large_open.svg" alt=""/>
+                        <img ng-hide="popupOpen" ng-src="{{routePrefix}}/static/img/popup_large_closed.svg" alt=""/>
+                    </div>
+                </div>
+                <div class="value-display current-flow" ng-class="landscape ? 'landscape' : 'portrait'" ng-show="selectionActive">
+                    <div class="centered">
+                        <span>{{currentFlowPercentage | number : 0}}%</span>
+                    </div>
+                </div>
+                <div class="wheel-button" id="flow">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc-flow-interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="selectionActive"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="selectionActive"/>
+                </svg>
+                <div class="flow-bar"></div>
+            </div>
+        </div>
+        <div ng-class="{'in-front': flowActive == true}" ng-show="is_tlc_temperature == false"
+             class="col-xs-12 col-md-6 tile-col visible-xs">
+            <div class="tile-title hidden-xs">{{ 'FLOW' | translate }}</div>
+            <div class="tile" id="flow-tile">
+                <div class="value-display current-flow" ng-class="landscape ? 'landscape' : 'portrait'" ng-show="selectionActive">
+                    <div class="centered">
+                        <span>{{currentFlowPercentage | number : 0}}%</span>
+                    </div>
+                </div>
+                <div class="wheel-button temp" id="flow">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc-flow-interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="selectionActive"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="selectionActive"/>
+                </svg>
+                <div class="flow-bar"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

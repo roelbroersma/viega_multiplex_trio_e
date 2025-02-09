@@ -1,0 +1,103 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'QUICK_BATHTUB_FILL' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'QUICK_BATHTUB_FILL' | translate }}</div>
+            <div class="tile" style="padding-bottom: 60px;">
+
+                <div class="settings-title" ng-show="noQAMessage == true"
+                     translate="{{ 'NO_QUICK_ACCESS' | translate }}"></div>
+
+                <div ng-show="quickAmount1 != undefined && quickAmount1 != 0">
+                    <div class="settings-title">Quick Access 1</div>
+                    <div class="tile-content-white" id="button-tile-1">
+                        <div class="button-overlay"></div>
+                        <div class="qa-container">
+                            <div class="qa-temp">{{quickTemp1Display}}{{tempUnit}}</div>
+                            <div class="qa-amount">{{quickAmount1}} L</div>
+                            <div class="bath-button" id="button-1"
+                                 data-ng-click="startBathtubFill(quickTemp1, quickAmount1, 1)">{{
+                                'FILL_BATH' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-content-white status-tile" id="tile-1">
+                        <div class="qa-container">
+                            {{statusText}}
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="quickAmount2 != undefined && quickAmount2 != 0">
+                    <div class="settings-title">Quick Access 2</div>
+                    <div class="tile-content-white" id="button-tile-2">
+                        <div class="button-overlay"></div>
+                        <div class="qa-container">
+                            <div class="qa-temp">{{quickTemp2Display}}{{tempUnit}}</div>
+                            <div class="qa-amount">{{quickAmount2}} L</div>
+                            <div class="bath-button" id="button-2"
+                                 data-ng-click="startBathtubFill(quickTemp2, quickAmount2, 2)">{{
+                                'FILL_BATH' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-content-white status-tile" id="tile-2">
+                        <div class="qa-container">
+                            {{statusText}}
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="quickAmount3 != undefined && quickAmount3 != 0">
+                    <div class="settings-title">Quick Access 3</div>
+                    <div class="tile-content-white" id="button-tile-3">
+                        <div class="button-overlay"></div>
+                        <div class="qa-container">
+                            <div class="qa-temp">{{quickTemp3Display}}{{tempUnit}}</div>
+                            <div class="qa-amount">{{quickAmount3}} L</div>
+                            <div class="bath-button" id="button-3"
+                                 data-ng-click="startBathtubFill(quickTemp3, quickAmount3, 3)">{{
+                                'FILL_BATH' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-content-white status-tile" id="tile-3">
+                        <div class="qa-container">
+                            {{statusText}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{ 'FILLING_FINISHED' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ 'FILLING_FINISHED_TEXT' | translate }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close()">OK</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="myOtherModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{ 'FILLING_CANCELLED' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ 'FILLING_CANCELLED_TEXT' | translate }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close()">OK</button>
+    </div>
+</script>

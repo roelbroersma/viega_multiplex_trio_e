@@ -1,0 +1,142 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'INFO' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'INFO' | translate }}</div>
+            <div class="tile" style="padding-bottom: 60px;">
+
+                <div class="settings-title">{{ 'CONTACT_SUPPORT' | translate }}</div>
+                <div class="tile-content-white obla-info">
+                    <span>Viega Technology GmbH & Co. KG</span>
+                    <span>Viega Platz 1</span>
+                    <span>D-57439 Attendorn</span>
+                    <span>Tel.: +49 2722 61-0</span>
+                    <span>Fax: +49 2722 61-1415</span>
+                    <span><a href="mailto:info@viega.de">info@viega.de</a></span>
+                    <span><a href="http://www.viega.de" target="_blank">www.viega.de</a></span>
+                </div>
+                <div class="settings-title">{{ 'TECHNICAL_SUPPORT' | translate }}</div>
+                <div class="tile-content-white obla-info">
+                    <span translate="{{ 'TECHNICAL_SUPPORT_TEXT' | translate }}"></span>
+                </div>
+                <div class="settings-title">{{ 'IMPRESSUM' | translate }}</div>
+                <div class="tile-content-white obla-info">
+                    <span><a href="{{ 'IMPRESSUM_LINK' | translate }}" target="_blank">{{ 'IMPRESSUM' | translate }}</a></span>
+                </div>
+                <div class="settings-title">{{ 'SOFTWARE_VERSION' | translate }}</div>
+                <div class="tile-content-white">
+                    <table>
+                        <tr>
+                            <td>{{ 'SOFTWARE_VERSION' | translate }}</td>
+                            <td>{{ softwareVersion }} <span class="update-available" ng-show="updateAvailable">{{ 'UPDATE_AVAILABLE' | translate }}</span>
+                            </td>
+                            <td>
+                                <div class="update" data-ng-click="showUploadForm = true" ng-hide="hasSocket || isIOS">Update
+                                </div>
+                                <div class="update" data-ng-click="automaticUpdate()"
+                                     ng-show="hasSocket && updateAvailable">Update
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tile-content-white" ng-show="showUploadForm == true">
+                    <form id="update-file-form" class="text-center">
+                        <div class="alert alert-warning update-message" ng-show="updateSetup">{{
+                            'AUTOMATIC_UPDATE_VERIFY' |
+                            translate }}
+                        </div>
+                        <div class="alert alert-success update-message" ng-show="updateRunning">{{ 'UPDATE_MESSAGE' |
+                            translate }}
+                        </div>
+                        <div class="alert alert-success update-message" ng-show="updateFinished">{{ 'UPDATE_COMPLETE' |
+                            translate }}
+                        </div>
+                        <div class="progress" ng-show="updateRunning" style="margin-bottom:20px; width:100%;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{percentage}}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100" ng-style="progress">
+                                <span class="sr-only">{{percentage}}% Complete</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+
+                                <span class="btn btn-default btn-file">
+                                    Browse&hellip; <input type="file" file-model="myFile" accept=".bin"/>
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <div class="ft-button" data-ng-click="uploadFile()" style="margin-top: 25px;">
+                            {{ 'INSTALL_MANUALLY' | translate }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="automaticUpdateContent.html">
+    <div class="modal-body">
+        <div class="row">
+            <div class="image-content col-xs-12 text-center">
+                <section>
+                    <img ng-src="{{ routePrefix }}static/img/warning.png" alt="warning"/>
+                </section>
+            </div>
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center" ng-show="status == 200 && !updateFinished">
+
+                <p>
+                    {{ 'UPDATE_IN_PROGRESS' | translate }}
+                </p>
+
+                <div class="progress" style="margin-bottom:20px; width:100%;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{percentage}}"
+                         aria-valuemin="0"
+                         aria-valuemax="100" ng-style="progress">
+                        <span class="sr-only">{{percentage}}% Complete</span>
+                    </div>
+                </div>
+
+                <p>
+                    {{ 'AFTER_UPDATE' | translate }}
+                </p>
+            </div>
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center" ng-show="status != 200">
+                <p>{{ 'UPDATE_FAILED' | translate }}</p>
+            </div>
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center" ng-show="updateFinished">
+                <p>{{ 'UPDATE_COMPLETE' | translate }}</p>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="automaticUpdateVerify.html">
+    <div class="modal-body">
+        <div class="row">
+            <div class="image-content col-xs-12 text-center">
+                <section>
+                    <img ng-src="{{ routePrefix }}static/img/warning.png" alt="warning"/>
+                </section>
+            </div>
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center">
+                <p>
+                    {{ 'AUTOMATIC_UPDATE_VERIFY' | translate }}
+                </p>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,116 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'NETWORK' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'NETWORK' | translate }}</div>
+            <div class="tile" style="padding-top: 30px;">
+                <div ng-show="TLC.network !='ethernet'">
+                    <div class="tile-content-white settings-white-tile" ng-hide="currentNetwork == undefined">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        {{currentNetwork.name}}
+                        <div class="wlan-info-right">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span ng-show="currentNetwork.strength == 4" class="icon-signal-4-bar"></span>
+                            <span ng-show="currentNetwork.strength == 3" class="icon-signal-3-bar"></span>
+                            <span ng-show="currentNetwork.strength == 2" class="icon-signal-2-bar"></span>
+                            <span ng-show="currentNetwork.strength == 1" class="icon-signal-1-bar"></span>
+                        </div>
+                    </div>
+                    <a class="network-switch" href="" ng-show="restarting == true">
+                        {{ 'PEER_TO_PEER_RESTART' | translate }}
+                    </a>
+                    <a class="network-switch" href="" data-ng-click="disconnectWLAN()"
+                       ng-hide="currentNetwork == undefined ||  TLC.network =='ethernet' || TLC.network =='wlan_ap'">
+                        {{ 'PEER_TO_PEER' | translate }}
+                    </a>
+
+                    <div class="settings-title" ng-hide="hasSocket">{{ 'CHOOSE_NETWORK' | translate }}</div>
+
+                    <a class="network-switch" href=""
+                       ng-repeat="network in availableNetworks | orderObjectBy:'rawsignal'"
+                       data-ng-click="switchNetwork(network)"
+                       ng-hide="hasSocket">{{network.name}}
+                        <div class="wlan-info-right">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span ng-show="network.strength == 4" class="icon-signal-4-bar"></span>
+                            <span ng-show="network.strength == 3" class="icon-signal-3-bar"></span>
+                            <span ng-show="network.strength == 2" class="icon-signal-2-bar"></span>
+                            <span ng-show="network.strength == 1" class="icon-signal-1-bar"></span>
+                        </div>
+                    </a>
+                    <a class="network-switch" href="" data-ng-click="connectToOther()" ng-hide="hasSocket">
+                        {{ 'OTHER' | translate }}
+                    </a>
+
+
+                    <div class="settings-title" style="margin-bottom: 90px;">{{ 'MAC_ADRESS' | translate }}<br/>
+                        {{ macAdress }}
+                    </div>
+                </div>
+
+                <div ng-show="TLC.network =='ethernet'">
+                    <a class="network-switch" href="">
+                        {{ 'WIRED_CONNECTION_1' | translate }}
+                    </a>
+                    <a class="network-switch" href="">
+                        {{ 'WIRED_CONNECTION_2' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center">
+                <h3 style="margin-bottom: 20px;">{{ 'YOUR_WLAN_PASSWORD' | translate }} {{network.name}} {{ 'ENTER' |
+                    translate }}</h3>
+                <h4>{{requestMessage}}</h4>
+
+                <input type="password" id="password" class="form-control"/>
+
+            </div>
+
+            <div class="col-xs-12 text-center">
+                <button class="btn btn-default" ng-click="close()">{{ 'CLOSE' | translate }}</button>
+                <button class="btn btn-default" ng-click="submit(network)">{{ 'CONFIRM' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="myModalContent2.html">
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="text-content col-xs-10 col-xs-offset-1 text-center">
+                <h3>{{ 'CONNECT_TO_OTHER' | translate}}</h3>
+                <h4>{{requestMessage}}</h4>
+
+                <div class="form-group">
+                    <label for="other-ssid">{{ 'SSID' | translate }}</label>
+                    <input id="other-ssid" type="text" placeholder="{{ 'SSID' | translate }}" class="form-control" ng-model="network.name">
+                </div>
+                <div class="form-group">
+                    <label for="other-password">{{ 'PASSWORD' | translate }}</label>
+                    <input id="other-password" type="password" placeholder="{{ 'PASSWORD' | translate }}"
+                           class="form-control" ng-model="network.password">
+                </div>
+            </div>
+
+            <div class="col-xs-12 text-center">
+                <button class="btn btn-default" ng-click="close()">{{ 'CLOSE' | translate }}</button>
+                <button class="btn btn-default" ng-click="submit()">{{ 'CONFIRM' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</script>

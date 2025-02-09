@@ -1,0 +1,38 @@
+[
+  {
+    "name": "CZECH",
+    "key": "cs"
+  },
+  {
+    "name": "GERMAN",
+    "key": "de"
+  },
+  {
+    "name": "ENGLISH",
+    "key": "en"
+  },
+  {
+    "name": "SPANISH",
+    "key": "es"
+  },
+  {
+    "name": "FRENCH",
+    "key": "fr"
+  },
+  {
+    "name": "ITALIAN",
+    "key": "it"
+  },
+  {
+    "name": "DUTCH",
+    "key": "nl"
+  },
+  {
+    "name": "POLISH",
+    "key": "pl"
+  },
+  {
+    "name": "RUSSIAN",
+    "key": "ru"
+  }
+]

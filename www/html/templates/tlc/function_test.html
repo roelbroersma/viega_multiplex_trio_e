@@ -1,0 +1,162 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title">{{ 'FUNCTION_TEST' | translate }}</div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div class="col-xs-12 tile-col">
+            <div class="tile-title hidden-xs">{{ 'FUNCTION_TEST' | translate }}</div>
+            <div class="tile" style="padding-top: 30px;">
+
+                <div class="tile-content-white" ng-show="FTStep3_2 == true">
+                    <div class="ft-label">{{ 'FUNCTION_TEST_SUCCESSFUL' | translate }}</div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep3_2 == false">
+                    <div class="ft-label" translate="{{ 'COLD_WATER_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep3_1 == true">
+                    <div class="button-overlay" ng-show="FTStep3_2 != null"></div>
+                    <div class="ft-label">{{ 'COLD_WATER' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep3_2 == true, 'selection-inactive': FTStep3_2 == false}"
+                             data-ng-click="FTStep3_2 = true; functionTestFinished()">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep3_2 == false, 'selection-inactive': FTStep3_2 == true}"
+                             data-ng-click="FTStep3_2 = false; cancelFunctionTest()">{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep3_1 == false">
+                    <div class="ft-label" translate="{{ 'BLUE_LED_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep2_2 == true">
+                    <div class="button-overlay" ng-show="FTStep3_1 != null"></div>
+                    <div class="ft-label">{{ 'INTERFACE_BLUE' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep3_1 == true, 'selection-inactive': FTStep3_1 == false}"
+                             data-ng-click="FTStep3_1 = true">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep3_1 == false, 'selection-inactive': FTStep3_1 == true}"
+                             data-ng-click="FTStep3_1 = false; cancelFunctionTest()">{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep2_2 == false">
+                    <div class="ft-label" translate="{{ 'WATER_FLOW_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep2_1 == true">
+                    <div class="button-overlay" ng-show="FTStep2_2 != null"></div>
+                    <div class="ft-label">{{ 'WATER_FLOW_CHECK' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep2_2 == false, 'selection-inactive': FTStep2_2 == true}"
+                             data-ng-click="FTStep2_2 = false; cancelFunctionTest()">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep2_2 == true, 'selection-inactive': FTStep2_2 == false}"
+                             data-ng-click="functionTestThirdStep()">{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep2_1 == false">
+                    <div class="ft-label" translate="{{ 'GREEN_LED_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+
+                <div class="tile-content-white" ng-show="FTStep1_2 == true">
+                    <div class="button-overlay" ng-show="FTStep2_1 != null"></div>
+                    <div class="ft-label">{{ 'INTERFACE_GREEN' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep2_1 == true, 'selection-inactive': FTStep2_1 == false}"
+                             data-ng-click="FTStep2_1 = true">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep2_1 == false, 'selection-inactive': FTStep2_1 == true}"
+                             data-ng-click="FTStep2_1 = false; cancelFunctionTest()">{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep1_2 == false">
+                    <div class="ft-label" translate="{{ 'WARM_WATER_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+
+                <div class="tile-content-white" ng-show="FTStep1_1 == true">
+                    <div class="button-overlay" ng-show="FTStep1_2 != null"></div>
+                    <div class="ft-label">{{ 'WARM_WATER' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep1_2 == true, 'selection-inactive': FTStep1_2 == false}"
+                             data-ng-click="functionTestSecondStep()">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep1_2 == false, 'selection-inactive': FTStep1_2 == true}"
+                             data-ng-click="FTStep1_2 = false; cancelFunctionTest()">{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="FTStep1_1 == false">
+                    <div class="ft-label" translate="{{ 'RED_LED_ERROR' | translate:'{TLCid:TLCid}' }}"></div>
+                </div>
+
+
+                <div class="tile-content-white" id="ft-first-step">
+                    <div class="button-overlay" ng-show="FTStep1_1 != null"></div>
+                    <div class="ft-label">{{ 'INTERFACE_RED' | translate }}</div>
+                    <div class="button-container">
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep1_1 == true, 'selection-inactive': FTStep1_1 == false}"
+                             data-ng-click="FTStep1_1 = true">{{'YES' | translate}}
+                        </div>
+                        <div class="function-button"
+                             ng-class="{'selection-active': FTStep1_1 == false, 'selection-inactive': FTStep1_1 == true}"
+                             data-ng-click="FTStep1_1 = false; cancelFunctionTest()" >{{'NO' | translate}}
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="tile-content-white" ng-show="functionTestRunning">
+                    <div class="controller-restart ft-label">{{ 'DEVICE_RESTART' | translate }}</div>
+                    <div class="controller-ready ft-label">{{ 'DEVICE_READY' | translate }}</div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0"
+                             aria-valuemax="100" style="width: 0%;">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tile-content-white" id="first-tile-content">
+                    <div class="start-function-test ft-button"
+                         data-ng-click="functionTestRunning = true; startFunctionTest()" ng-hide="functionTestRunning || !functionTestReady">
+                        {{ 'START_FUNCTION_TEST' | translate }}
+                    </div>
+                    <div class="cancel-function-test ft-button" data-ng-click="cancelButtonPressed()"
+                         ng-show="functionTestRunning">{{ 'CANCEL_FUNCTION_TEST' | translate }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

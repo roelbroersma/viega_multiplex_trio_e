@@ -1,0 +1,44 @@
+<div id="main-menu" class="sub-nav">
+    <div class="main-content">
+        <div id="category-header">
+            <a href="#/" ng-bind="setEliptedStringTitle(TLC.name)"></a>
+            <a class="right-header visible-xs" href=""><img ng-src="{{routePrefix}}/static/img/close_nav.png" alt=""/></a>
+        </div>
+
+        <div id="navigation" class="no-icons">
+            <span>
+                <a id="home" ng-hide="TLC.type == 3" ng-click="slideIn(isActive('/' + TLC.id + '/home'))" ng-class="getClass('/' + TLC.id + '/home')" href="#/{{TLC.id}}/home">{{ 'HOME' | translate}}</a>
+            </span>
+            <span>
+                <a id="warmup" ng-show="TLC.type == 3" ng-click="slideIn(isActive('/' + TLC.id + '/warm_up'))" ng-class="getClass('/' + TLC.id + '/warm_up')" href="#/{{TLC.id}}/warm_up">{{'WARMUP' | translate}}</a>
+            </span>
+            <span>
+                <a id="measuring_cup" ng-show="TLC.type == 1" ng-click="slideIn(isActive('/' + TLC.id + '/measuring_cup'))" ng-class="getClass('/' + TLC.id + '/measuring_cup')" href="#/{{TLC.id}}/measuring_cup">{{'MEASURING_CUP' | translate}}</a>
+            </span>
+            <span>
+                <a id="bathtub_fill" ng-show="TLC.type == 4" ng-click="slideIn(isActive('/' + TLC.id + '/bathtub_fill'))" ng-class="getClass('/' + TLC.id + '/bathtub_fill')" href="#/{{TLC.id}}/bathtub_fill">{{ 'MANUALLY' | translate}}</a>
+            </span>
+            <span>
+                <a id="quick_bathtub_fill" ng-show="TLC.type == 4" ng-click="slideIn(isActive('/' + TLC.id + '/quick_bath_fill'))" ng-class="getClass('/' + TLC.id + '/quick_bath_fill')" href="#/{{TLC.id}}/quick_bath_fill">{{ 'QUICK_BATHTUB_FILL' | translate}}</a>
+            </span>
+            <span>
+                <a id="hygiene" ng-click="slideIn(isActive('/' + TLC.id + '/hygiene'))" ng-class="getClass('/' + TLC.id + '/hygiene')"  href="#/{{TLC.id}}/hygiene">{{ 'HYGIENE' | translate }}</a>
+            </span>
+            <span>
+                <a id="function-test" ng-click="slideIn(isActive('/' + TLC.id + '/function_test'))" ng-class="getClass('/' + TLC.id + '/function_test')"  href="#/{{TLC.id}}/function_test">{{ 'FUNCTION_TEST' | translate }}</a>
+            </span>
+            <span>
+                <a id="info" ng-click="slideIn(isActive('/' + TLC.id + '/info'))" ng-class="getClass('/' + TLC.id + '/info')" href="#/{{TLC.id}}/info">{{ 'INFO' | translate }}</a>
+            </span>
+            <span>
+                <a id="settings" ng-click="slideIn(isActive('/' + TLC.id + '/settings'))" ng-class="getClass('/' + TLC.id + '/settings')" href="#/{{TLC.id}}/settings">{{ 'SETTINGS' | translate }}</a>
+            </span>
+             <!--<span>-->
+                <!--<a id="password-page" ng-click="slideIn(isActive('/' + TLC.id + '/password'))" ng-class="getClass('/' + TLC.id + '/password')" href="#/{{TLC.id}}/password">{{ 'PASSWORD' | translate }}</a>-->
+            <!--</span>-->
+            <span>
+                <a id="network" ng-click="slideIn(isActive('/' + TLC.id + '/network'))"  ng-class="getClass('/' + TLC.id + '/network')" href="#/{{TLC.id}}/network">{{ 'NETWORK' | translate }}</a>
+            </span>
+        </div>
+    </div>
+</div>

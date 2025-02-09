@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if lte IE 9]>
+<html class="no-js" lang="en"> <![endif]-->
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!--[if gte IE 7]>
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+    <meta HTTP-EQUIV="Expires" CONTENT="-1"/>
+    <![endif]-->
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width, minimal-ui"/>
+    <link rel="stylesheet" type="text/css" href="static/css/project.css?v=201810161010"/>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap-switch.min.css?v=201810161010"/>
+    <title>Trio-E Control</title>
+    <script type="text/javascript" src="static/js/lib/modernizr.custom.js?v=201810161010"></script>
+
+    <routePrefix href=""/>
+</head>
+<body data-ng-app="tlcApp">
+
+<div class="appWrapper">
+
+    <section data-ng-controller="MainController">
+
+        <div class="menu noPreventDefault" data-ui-view="menu"></div>
+        <div class="content noPreventDefault" data-ui-view="content" style="position: relative;"></div>
+
+    </section>
+
+    <div data-ng-controller="LoaderController">
+        <div ng-show="lockUi" class="page-loader">
+            <div class="page-loader__content">
+                <div class="page-loader__spinner">
+                    <div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--[if lte IE 9]>
+    <script src="//cdn.rawgit.com/jpillora/xdomain/gh-pages/dist/0.6/xdomain.min.js"
+            slave="https://tlc-api.impac.ch/static/proxy.html"></script>
+    <![endif]-->
+</div>
+
+<script type="text/javascript" src="static/js/lib/jquery-1.11.1.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/jquery-ui.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/jquery.slimscroll.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/underscore-min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-route.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-cookies.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-ui-router.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-animate.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/ui-bootstrap.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/bootstrap-switch.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-bootstrap-switch.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/jquery.ui.touch-punch.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-translate.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/moment-with-locales.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/combodate.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-md5.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/propeller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/ui-bootstrap-tpls-js.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/ng-file-upload-shim.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/ng-file-upload.min.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/angular-websocket.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/jquery.crypt.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/jquery.cookie.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/crypto_js_sha512.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/lib/he.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/index-offline.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/project.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/cs_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/de_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/en_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/es_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/fr_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/it_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/nl_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/pl_translation_provider.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/languages/ru_translation_provider.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/directives/file_model.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/services/tlc_service.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/services/loader_service.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/filters/order_object_by_filter.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/controller/home_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/main_menu_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/submenu_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/loader_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/tlc_home_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/function_test_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/warm_up_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/info_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/settings_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/network_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/hygiene_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/bathtub_fill_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/measuring_cup_controller.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/quick_bathtub_fill.js?v=201810161010"></script>
+<script type="text/javascript" src="static/js/controller/tlc/password_controller.js?v=201810161010"></script>
+
+<script type="text/javascript" src="static/js/route.js?v=201810161010"></script>
+
+</body>
+</html>

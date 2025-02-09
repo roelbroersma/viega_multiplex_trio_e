@@ -1,0 +1,59 @@
+<div id="main-menu">
+    <div class="main-content">
+        <div id="twinlevel-header">
+            <a href="#/"><img ng-src="{{ routePrefix }}/static/img/logo.jpg" alt="logo"/></a>
+        </div>
+
+        <div id="navigation">
+            <div class="back" ng-show="hasSocket">
+                <a href="/">
+                    <span class="icon-left_thin-01"></span>
+                    < {{ 'DEVICE_MANAGEMENT' | translate }}
+                </a>
+            </div>
+            <span ng-repeat="TLC in TLCs" id="tlc-{{ TLC.id }}">
+                <a class="main-link type{{ TLC.type }}" ng-hide="TLC.type == 3" href="#/{{ TLC.id }}/home"
+                   ng-class="{'selected': tlcId == TLC.id}">
+                    <span ng-show="TLC.type == 1" class="icon-kitchen"></span>
+                    <span ng-show="TLC.type == 2" class="icon-washbasin"></span>
+                    <span ng-show="TLC.type == 3" class="icon-shower"></span>
+                    <span ng-show="TLC.type == 4" class="icon-bathtub"></span>
+                    <span class="text-span" ng-bind="setEliptedString(TLC.name)"></span>
+                </a>
+                <a class="main-link type{{ TLC.type }}" ng-show="TLC.type == 3" href="#/{{ TLC.id }}/warm_up"
+                   ng-class="{'selected': tlcId == TLC.id}">
+                    <span ng-show="TLC.type == 1" class="icon-kitchen"></span>
+                    <span ng-show="TLC.type == 2" class="icon-washbasin"></span>
+                    <span ng-show="TLC.type == 3" class="icon-shower"></span>
+                    <span ng-show="TLC.type == 4" class="icon-bathtub"></span>
+                    <span class="text-span" ng-bind="setEliptedString(TLC.name)"></span>
+                </a>
+                <span class="hidden-xs sub-nav" ng-hide="tlcId != TLC.id">
+                    <a class="sub-link" ng-hide="TLC.type == 3" ng-class="getClass('/' + TLC.id + '/home')" id="home"
+                       href="#/{{ TLC.id }}/home">{{ 'HOME' | translate }}</a>
+                    <a class="sub-link" ng-show="TLC.type == 3" ng-class="getClass('/' + TLC.id + '/warm_up')" id="warmup"
+                       href="#/{{ TLC.id }}/warm_up">{{ 'WARMUP' | translate }}</a>
+                    <a class="sub-link" ng-show="TLC.type == 1" ng-class="getClass('/' + TLC.id + '/measuring_cup')"
+                       id="measuring_cup" href="#/{{ TLC.id }}/measuring_cup">{{ 'MEASURING_CUP' | translate }}</a>
+                    <a class="sub-link" ng-show="TLC.type == 4" ng-class="getClass('/' + TLC.id + '/bathtub_fill')"
+                       id="bathtub_fill" href="#/{{ TLC.id }}/bathtub_fill">{{ 'MANUALLY' | translate }}</a>
+                    <a class="sub-link" ng-show="TLC.type == 4" ng-class="getClass('/' + TLC.id + '/quick_bath_fill')"
+                       id="quick_bathtub_fill"
+                       href="#/{{ TLC.id }}/quick_bath_fill">{{ 'QUICK_BATHTUB_FILL' | translate }}</a>
+                    <a class="sub-link" id="hygiene" ng-class="getClass('/' + TLC.id + '/hygiene')"
+                       href="#/{{ TLC.id }}/hygiene">{{ 'HYGIENE' | translate }}</a>
+                    <a class="sub-link" ng-class="getClass('/' + TLC.id + '/function_test')" id="function-test"
+                       href="#/{{ TLC.id }}/function_test">{{ 'FUNCTION_TEST' | translate }}</a>
+                    <a class="sub-link" ng-class="getClass('/' + TLC.id + '/info')" id="info"
+                       href="#/{{ TLC.id }}/info">{{ 'INFO' | translate }} <span ng-show="TLC.updateAvailable" class="warning-icon glyphicon glyphicon-exclamation-sign"></span></a>
+                    <a class="sub-link" id="settings" ng-class="getClass('/' + TLC.id + '/settings')"
+                       href="#/{{ TLC.id }}/settings">{{ 'SETTINGS' | translate }}</a>
+                    <!--<a class="sub-link" id="password-page" ng-class="getClass('/' + TLC.id + '/password')"-->
+                       <!--href="#/{{ TLC.id }}/password" ng-show="!hasSocket">{{ 'PASSWORD' | translate }}</a>-->
+                    <a class="sub-link" id="network" ng-class="getClass('/' + TLC.id + '/network')"
+                       href="#/{{ TLC.id }}/network">{{ 'NETWORK' | translate }}</a>
+                </span>
+            </span>
+        </div>
+    </div>
+</div>

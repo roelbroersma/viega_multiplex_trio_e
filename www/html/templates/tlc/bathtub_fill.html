@@ -1,0 +1,139 @@
+<div class="mobile-header visible-xs">
+    <div class="back-button"><a href="#/"><img ng-src="{{routePrefix}}/static/img/back_button.png"/></a></div>
+    <div class="header-title" ng-class="{ 'with-popup': TLC.popup }">{{ 'BATHTUB_FILL' | translate }}</div>
+    <div class="popup-open" ng-click="togglePopup()" ng-show="TLC.popup">
+        <img ng-show="popupOpen" ng-src="{{routePrefix}}/static/img/popup_mini_open.svg" alt=""/>
+        <img ng-hide="popupOpen" ng-src="{{routePrefix}}/static/img/popup_mini_closed.svg" alt=""/>
+    </div>
+    <div class="nav-open"><a href=""><img ng-src="{{routePrefix}}/static/img/nav_open.png"/></a></div>
+</div>
+
+<div class="tile-container">
+    <div class="row">
+        <div ng-show="wheelReady" class="mode-selection">
+            <span class="icon-thermostat visible-xs left"></span>
+
+            <div class="temp-slider visible-xs left">
+
+                <input
+                        bs-switch
+                        ng-model="regulatorMode"
+                        type="checkbox"
+                        class="my-slider"
+                        switch-active="{{ isActive }}"
+                        switch-on-color="{{ onColor }}"
+                        switch-off-color="{{ offColor }}"
+                        switch-on-text=" "
+                        switch-off-text=" "
+                        switch-animate="{{ animate }}"
+                        switch-size="{{ size }}"
+                        switch-label="{{ label }}"
+                        switch-icon="vertical-bar">
+
+            </div>
+            <span class="icon-waterflow visible-xs left"></span>
+
+        </div>
+
+        <div ng-class="{'in-front': flowActive == false}"
+             class="col-xs-12 col-md-6 tile-col">
+            <div class="tile-title hidden-xs">{{ 'TEMP' | translate }}</div>
+            <div class="tile" id="temp-tile">
+
+                <div class="value-display current-temp" ng-class="landscape ? 'landscape' : 'portrait'">
+                    <div class="centered">
+                        <span ng-show="tlcState == 'h' && landscape == true">{{ 'BATH_CLEANING' | translate }}<br/></span>
+                        <span ng-show="tlcState == 'h' && landscape == false">{{ 'BATH_CLEANING' | translate }} </span>
+                        <span ng-show="tlcState == 'i' && landscape == true">{{ 'BATH_FILLING' | translate}}<br></span>
+                        <span ng-show="tlcState == 'i' && landscape == false">{{ 'BATH_FILLING_LONG' | translate }}</span>
+                        <span ng-hide="tlcState == 'h'">{{tempDisplay | number : 1}}{{tempUnit}}</span>
+                    </div>
+                </div>
+                <div class="wheel-button temp" id="temp">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc_temp_interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="bathtubFill"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="bathtubFill"/>
+                </svg>
+            </div>
+        </div>
+        <div ng-class="{'in-front': flowActive == true}"
+             class="col-xs-12 col-md-6 tile-col hidden-xs">
+            <div class="tile-title hidden-xs">{{ 'AMOUNT' | translate }}</div>
+            <div class="tile" id="flow-tile">
+                <div ng-show="TLC.popup">
+                    <div id="popup" ng-click="togglePopup()">
+                        <img ng-show="popupOpen" ng-src="{{routePrefix}}/static/img/popup_large_open.svg" alt=""/>
+                        <img ng-hide="popupOpen" ng-src="{{routePrefix}}/static/img/popup_large_closed.svg" alt=""/>
+                    </div>
+                </div>
+                <div class="value-display current-flow" ng-class="landscape ? 'landscape' : 'portrait'">
+                    <div class="centered">
+                        <span>{{amountDisplay | number : 0}} L</span>
+                    </div>
+                </div>
+                <div class="wheel-button" id="flow">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc-flow-interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="bathtubFill"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="bathtubFill"/>
+                </svg>
+                <div class="flow-bar"></div>
+            </div>
+        </div>
+        <div ng-class="{'in-front': flowActive == true}"
+             class="col-xs-12 col-md-6 tile-col visible-xs">
+            <div class="tile-title hidden-xs">{{ 'FLOW' | translate }}</div>
+            <div class="tile" id="flow-tile">
+
+
+                <div class="value-display current-flow" ng-class="landscape ? 'landscape' : 'portrait'">
+                    <div class="centered">
+                        <span ng-if="statusText != ''" ng-hide="landscape == false"
+                              class="statustext">{{statusText}}<br/></span>
+                        <span ng-if="statusText != ''" ng-show="landscape == false">{{statusText}} </span>
+                        <span ng-show="tlcState != 'h'">{{amountDisplay | number : 0}} L</span>
+                    </div>
+                </div>
+                <div class="wheel-button" id="flow">
+                    <img class="wheel-interface" ng-src="{{routePrefix}}/static/img/tlc-flow-interface.png"/>
+                    <img class="wheel-back" ng-src="{{routePrefix}}/static/img/tlc_wheel_background.png"/>
+                </div>
+                <img class="wheel-glow" ng-src="{{routePrefix}}/static/img/glow.png" ng-show="bathtubFill"/>
+                <svg class="temp-shadow">
+                    <polygon points="0,0 0,0 0,0 0,0" style="fill:#E1E1E1;" ng-hide="bathtubFill"/>
+                </svg>
+                <div class="flow-bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{ 'FILLING_FINISHED' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ 'FILLING_FINISHED_TEXT' | translate }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close()">OK</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="myOtherModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{ 'FILLING_CANCELLED' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{ 'FILLING_CANCELLED_TEXT' | translate }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close()">OK</button>
+    </div>
+</script>
