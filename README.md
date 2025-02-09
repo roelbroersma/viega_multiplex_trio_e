@@ -44,6 +44,8 @@ udhcpc -i wlan0
 ifconfig wlan0
 ip a
 ```
+You will see the IP address.
+
 I created a folder in tmp (because that is the only Read-Write filesystem, the others are mounted Read-Only):
 ```mkdir -p /var/tmp```
 
@@ -60,6 +62,7 @@ server.dir-listing-hide-dotfiles = "false"
 lighttpd -f /tmp/lighttpd.conf
 ```
 
+Now you can access the file system under: http://<ip_address>:8081/
 
 
 ## Building your own Wifi module
