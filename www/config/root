@@ -1,0 +1,5 @@
+* * * * * /usr/bin/php-cgi /www/cron/network.php
+* * * * * /usr/bin/php-cgi /www/cron/blinkenlights.php
+* * * * * /usr/bin/php-cgi /www/ws/register.php
+0 * * * * /usr/bin/php-cgi /www/cron/sqlite.php
+*/5 * * * * /etc/init.d/avahi-daemon restart

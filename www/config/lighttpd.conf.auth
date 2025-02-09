@@ -1,0 +1,162 @@
+# lighttpd configuration file
+# 
+## modules to load
+# all other module should only be loaded if really neccesary
+# - saves some time
+# - saves memory
+server.modules = ( 
+	"mod_rewrite", 
+	"mod_accesslog",
+	"mod_redirect", 
+#	"mod_alias", 
+	"mod_auth", 
+#	"mod_status", 
+#	"mod_setenv",
+	"mod_fastcgi",
+#	"mod_proxy",
+#	"mod_simple_vhost",
+#	"mod_cgi",
+#	"mod_ssi",
+#	"mod_usertrack",
+#	"mod_expire",
+#	"mod_webdav"
+)
+
+# force use of the "write" backend (closes: #2401)
+server.network-backend = "write"
+
+## a static document-root, for virtual-hosting take look at the 
+## server.virtual-* options
+server.document-root = "/www/html/"
+
+## where to send error-messages to
+server.errorlog = "/var/log/lighttpd/error.log"
+
+accesslog.filename = "/var/log/lighttpd/access.log" 
+
+## files to check for if .../ is requested
+index-file.names = ( "index.html", "index.php" )
+
+## mimetype mapping
+mimetype.assign = (  
+	".pdf"   => "application/pdf",
+	".class" => "application/octet-stream",
+	".pac"   => "application/x-ns-proxy-autoconfig",
+	".swf"   => "application/x-shockwave-flash",
+	".wav"   => "audio/x-wav",
+	".gif"   => "image/gif",
+	".jpg"   => "image/jpeg",
+	".jpeg"  => "image/jpeg",
+	".png"   => "image/png",
+	".svg"   => "image/svg+xml",
+	".css"   => "text/css",
+	".html"  => "text/html",
+	".htm"   => "text/html",
+	".js"    => "text/javascript",
+	".txt"   => "text/plain",
+	".dtd"   => "text/xml",
+	".xml"   => "text/xml"
+ )
+
+## Use the "Content-Type" extended attribute to obtain mime type if possible
+#mimetypes.use-xattr = "enable"
+
+## send a different Server: header
+## be nice and keep it at lighttpd
+server.tag = "webserver"
+
+##
+# which extensions should not be handle via static-file transfer
+#
+# .php, .pl, .fcgi are most often handled by mod_fastcgi or mod_cgi
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+
+######### Options that are good to be but not neccesary to be changed #######
+
+## bind to port (default: 80)
+#server.port = 81
+
+## bind to localhost (default: all interfaces)
+#server.bind = "localhost"
+
+## error-handler for status 404
+#server.error-handler-404 = "/error-handler.html"
+#server.error-handler-404 = "/error-handler.php"
+
+## to help the rc.scripts
+server.pid-file = "/var/run/lighttpd.pid"
+
+url.rewrite-if-not-file = ("/api/(.*)/(.*)" => "/api/index.php?api=$0&url=$1&url2=$2&url3=$3")
+
+## 
+## Format: <errorfile-prefix><status>.html
+## -> ..../status-404.html for 'File not found'
+#server.errorfile-prefix = "/www/error-"
+
+## virtual directory listings
+#server.dir-listing = "enable"
+
+## send unhandled HTTP-header headers to error-log
+#debug.dump-unknown-headers = "enable"
+
+### only root can use these options
+#
+# chroot() to directory (default: no chroot() )
+#server.chroot = "/"
+
+## change uid to <uid> (default: don't care)
+server.username = "http"
+#
+server.upload-dirs = ( "/tmp" )
+
+## change uid to <uid> (default: don't care)
+server.groupname = "www-data"
+
+#### fastcgi module
+## read fastcgi.txt for more info
+fastcgi.server = (
+	".php" => (
+		"localhost" => (
+			"socket" => "/tmp/php-fastcgi.socket",
+			"bin-path" => "/usr/bin/php-fcgi",
+			"max-procs" => 1
+		)
+	)
+)
+
+auth.backend                 = "htdigest"
+auth.backend.htdigest.userfile  = "/etc/lighttpd/lighttpd.user"
+
+
+$HTTP["remoteip"] !~ "127.0.0.1" {
+	auth.require               = ( "/" =>
+                               (
+                                 "method"  => "digest",
+                                 "realm"   => "Viega",
+                                 "require" => "valid-user"
+                               ),
+                             )
+}
+
+
+$HTTP["scheme"] == "http" {
+    # capture vhost name with regex conditiona -> %0 in redirect pattern
+    # must be the most inner block to the redirect rule
+    $HTTP["host"] =~ ".*" {
+        url.redirect = (".*" => "https://%0$0")
+    }
+}
+
+$HTTP["scheme"] == "https" {
+	$SERVER["socket"] == ":443" {
+        ssl.engine = "enable"
+        ssl.pemfile = "/www/config/server.pem"
+        ssl.honor-cipher-order = "enable"
+        ssl.use-compression = "disable"
+        setenv.add-response-header = ("Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload","X-Frame-Options" => "DENY","X-Content-Type-Options" => "nosniff")
+        ssl.cipher-list = "EECDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:AES256+EDH:ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4-SHA:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM:!RC4:!3DES:!eNULL:!EXPORT:!DES:!MD5:!PSK"
+        ssl.disable-client-renegotiation = "enable"
+        ssl.use-sslv2 = "disable"
+        ssl.use-sslv3 = "disable"
+	}
+}

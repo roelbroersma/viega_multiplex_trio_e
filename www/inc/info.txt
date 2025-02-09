@@ -1,0 +1,1 @@
+{"version":"2.5-4.03","serial_number":"1611110303","serial_number_iot":"1606220010","password":"d943d15d8c2a24f4e77286edd9479f5c4578b3389f13b98d4c8a5dd3d32bf6d5392bc5d08cf4ad7d2bd9ce8a7599fba9f81eba352c1372bd24dfdbcb6c1e8693","name":"New","ip":"1.1.1.1"}

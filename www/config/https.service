@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+<name replace-wildcards="yes">%h</name>
+<service>
+<type>_https._tcp</type>
+<port>443</port>
+<txt-record>Model=%m</txt-record>
+<txt-record>Version=%v</txt-record>
+<txt-record>Vendor=%s</txt-record>
+<txt-record>Path=/</txt-record>
+</service>
+</service-group>

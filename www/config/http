@@ -1,0 +1,5 @@
+0 * * * * /bin/cat /dev/null > /var/log/lighttpd/access.log
+0 * * * * /bin/cat /dev/null > /var/log/lighttpd/error.log
+* * * * * /usr/bin/php-cgi /www/cron/watchdog.php &
+0 * * * * /usr/bin/php-cgi /www/cron/checkupdate.php
+0 * * * * /bin/rm /var/log/lighttpd/*.txt

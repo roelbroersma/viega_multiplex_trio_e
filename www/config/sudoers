@@ -1,0 +1,18 @@
+## sudoers file.
+##
+## User privilege specification
+##
+root ALL=(ALL) ALL
+
+http ALL=(ALL) NOPASSWD: /sbin/sysupgrade
+http ALL=(ALL) NOPASSWD: /usr/sbin/iwlist wlan0 scan
+http ALL=(ALL) NOPASSWD: /usr/sbin/wpa_cli status
+http ALL=(ALL) NOPASSWD: /usr/sbin/iwconfig
+http ALL=(ALL) NOPASSWD: /bin/date
+http ALL=(ALL) NOPASSWD: /usr/bin/at
+http ALL=(ALL) NOPASSWD: /usr/bin/gpg
+http ALL=(ALL) NOPASSWD: /sbin/uci
+http ALL=(ALL) NOPASSWD: /sbin/wifi reload
+http ALL=(ALL) NOPASSWD: /sbin/wifi status
+http ALL=(ALL) NOPASSWD: /sbin/ifstatus
+http ALL=(ALL) NOPASSWD: /etc/init.d/ntpdate
